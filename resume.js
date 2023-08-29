@@ -85,22 +85,25 @@ document.getElementById("send-button").addEventListener("click", function(event)
     event.preventDefault(); // Prevent default form submission
 
     // Gather form data
-    var name = document.getElementById("input-name").value;
-    var email = document.getElementById("input-email").value;
-    var message = document.getElementById("input-message").value;
+    var name = document.getElementById("input-name");
+    var email = document.getElementById("input-email");
+    var message = document.getElementById("input-message");
 
     // Define the email template parameters
     var templateParams = {
-        from_name: name,
-        from_email: email,
-        message: message
+        from_name: name.value,
+        from_email: email.value,
+        message: message.value
     };
 
     // Send the email using EmailJS
     emailjs.send("service_tarog4s", "template_22236bb", templateParams)
         .then(function(response) {
             console.log("Email sent successfully!", response);
-            // Optionally show a success message or redirect the user
+            alert('I will Contact You Soon!!!')
+                name.value = "";
+                email.value = "";
+                message.value = "";
         })
         .catch(function(error) {
             console.error("Error sending email:", error);
